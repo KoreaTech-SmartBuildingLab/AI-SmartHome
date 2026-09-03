@@ -21,3 +21,85 @@
 @media(max-width:1100px){.partner-grid{grid-template-columns:repeat(3,1fr)}.cooperation-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){.partners-wrap{margin-top:50px;padding-top:42px}.partners-heading h3{font-size:27px}.partner-grid,.cooperation-grid{grid-template-columns:1fr 1fr}.partner-card{min-height:190px;padding:16px}.logo-frame{height:72px}.logo-frame img{max-height:56px}.partner-group-title{display:block}.partner-group-title small{display:block;margin-top:4px}}
 @media(max-width:480px){.partner-grid,.cooperation-grid{grid-template-columns:1fr}}
+
+/* Korean typography / line-break refinement */
+html[lang="ko"] body,
+body {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+h1, h2, h3, h4,
+.hero h1,
+.section h2,
+.partners-heading h3,
+.info-card h3,
+.compare-card h3,
+.feature-card h3,
+.timeline-item h3,
+.data-grid h3,
+.contact-grid h2 {
+  word-break: keep-all;
+  overflow-wrap: normal;
+  text-wrap: balance;
+}
+
+p, li, small, strong, span,
+.hero-lead,
+.section-lead,
+.info-card p,
+.partner-card p,
+.timeline-item p,
+.data-grid p,
+.accordion details p {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* Give the Korean hero headline enough horizontal room on desktop */
+.hero-grid {
+  grid-template-columns: minmax(0, 1.28fr) minmax(340px, .72fr);
+  gap: 56px;
+}
+
+.hero h1 {
+  font-size: clamp(46px, 4.65vw, 70px);
+  line-height: 1.10;
+  letter-spacing: -.05em;
+  max-width: 820px;
+}
+
+.hero-lead {
+  max-width: 800px;
+  line-height: 1.75;
+}
+
+.section h2 {
+  max-width: 900px;
+}
+
+/* Cards: avoid awkward single-syllable wraps */
+.info-card .big,
+.info-card h3,
+.feature-card h3,
+.partner-card h4,
+.benefit-name,
+.contact-number a {
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+@media(max-width:1000px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero h1{max-width:900px;font-size:clamp(44px,7vw,64px)}
+}
+
+@media(max-width:700px){
+  .hero h1{
+    font-size:clamp(38px,11vw,52px);
+    line-height:1.12;
+    letter-spacing:-.045em;
+  }
+  .section h2{font-size:clamp(32px,9vw,42px);line-height:1.18}
+  .hero-lead,.section-lead{line-height:1.7}
+}
