@@ -103,3 +103,291 @@ p, li, small, strong, span,
   .section h2{font-size:clamp(32px,9vw,42px);line-height:1.18}
   .hero-lead,.section-lead{line-height:1.7}
 }
+
+
+/* =========================================================
+   v4 Mobile UX optimization
+   Desktop/tablet layout remains unchanged.
+   On phones, dense card groups become horizontal swipe rows.
+   ========================================================= */
+
+.mobile-swipe-hint{
+  display:none;
+}
+
+@media (max-width:700px){
+
+  /* Make touch scrolling feel natural */
+  .overview-grid,
+  .partner-grid,
+  .cooperation-grid,
+  .feature-grid,
+  .data-grid,
+  .arch-card,
+  .timeline{
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    scroll-behavior:smooth;
+  }
+
+  .overview-grid::-webkit-scrollbar,
+  .partner-grid::-webkit-scrollbar,
+  .cooperation-grid::-webkit-scrollbar,
+  .feature-grid::-webkit-scrollbar,
+  .data-grid::-webkit-scrollbar,
+  .arch-card::-webkit-scrollbar,
+  .timeline::-webkit-scrollbar{
+    display:none;
+  }
+
+  /* Small helper text shown only on mobile */
+  .mobile-swipe-hint{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:6px;
+    margin:10px 2px 12px;
+    color:#7a8d99;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:-.02em;
+    transition:opacity .25s ease;
+  }
+
+  .mobile-swipe-hint.is-used{
+    opacity:.28;
+  }
+
+  /* 1) Demonstration at a glance */
+  .overview-grid{
+    display:flex;
+    gap:14px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    scroll-padding-left:2px;
+    padding:2px 10vw 12px 2px;
+    margin-right:-14px;
+  }
+
+  .overview-grid .info-card{
+    flex:0 0 86%;
+    min-width:0;
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
+  }
+
+  /* 2) Research / cooperation institutions */
+  .partner-grid,
+  .cooperation-grid{
+    display:flex;
+    gap:12px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    padding:2px 12vw 10px 1px;
+    margin-right:-14px;
+  }
+
+  .partner-grid .partner-card,
+  .cooperation-grid .partner-card{
+    flex:0 0 76%;
+    min-height:184px;
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
+  }
+
+  .partner-card .logo-frame{
+    height:66px;
+    margin-bottom:12px;
+  }
+
+  .partner-card .logo-frame img{
+    max-height:52px;
+  }
+
+  /* 3) Installation items */
+  .feature-grid{
+    display:flex;
+    gap:14px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    padding:2px 11vw 12px 1px;
+    margin-right:-14px;
+  }
+
+  .feature-grid .feature-card{
+    flex:0 0 82%;
+    min-height:220px;
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
+  }
+
+  /* 4) AI smart-home operation concept
+     Three large panels are swiped horizontally instead of stacked vertically. */
+  .arch-card{
+    display:flex;
+    align-items:stretch;
+    gap:14px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    padding:18px 11vw 18px 18px;
+    margin-right:-14px;
+  }
+
+  .arch-card .arch-arrow{
+    display:none;
+  }
+
+  .arch-card .arch-col,
+  .arch-card .arch-center{
+    flex:0 0 84%;
+    min-width:0;
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
+    border-radius:18px;
+  }
+
+  .arch-card .arch-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    align-content:start;
+  }
+
+  .arch-card .arch-col h4{
+    grid-column:1/-1;
+    margin-bottom:2px;
+  }
+
+  .arch-card .arch-col span{
+    margin:0;
+    min-height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+
+  .arch-card .arch-center{
+    min-height:235px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+
+  /* 5) Demonstration process:
+     horizontal step cards instead of six full-width vertical blocks */
+  .process-layout{
+    gap:26px;
+  }
+
+  .timeline{
+    display:flex;
+    gap:14px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    padding:3px 11vw 14px 1px;
+    margin-right:-14px;
+  }
+
+  .timeline:before{
+    display:none;
+  }
+
+  .timeline-item{
+    flex:0 0 84%;
+    min-width:0;
+    display:grid;
+    grid-template-columns:52px 1fr;
+    gap:14px;
+    align-items:start;
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
+    padding:18px;
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:#fff;
+    box-shadow:0 8px 24px rgba(3,31,56,.045);
+  }
+
+  .timeline-item>span{
+    width:52px;
+    height:52px;
+    border-radius:15px;
+    font-size:14px;
+  }
+
+  .timeline-item h3{
+    margin-top:2px;
+    font-size:19px;
+  }
+
+  .timeline-item p{
+    margin-bottom:0;
+    line-height:1.6;
+  }
+
+  /* 6) Data categories */
+  .data-grid{
+    display:flex;
+    gap:14px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    padding:2px 11vw 12px 1px;
+    margin-right:-14px;
+  }
+
+  .data-grid article{
+    flex:0 0 82%;
+    min-width:0;
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
+  }
+
+  /* Prevent the horizontal rows from causing page-wide overflow */
+  .overview-grid,
+  .partner-grid,
+  .cooperation-grid,
+  .feature-grid,
+  .data-grid,
+  .arch-card,
+  .timeline{
+    max-width:calc(100vw - 14px);
+  }
+
+  /* Keep FAQ as accordion and tighten vertical rhythm */
+  .accordion summary{
+    padding-top:20px;
+    padding-bottom:20px;
+  }
+
+  /* Mobile sections feel shorter with slightly tighter spacing */
+  .partners-wrap{
+    margin-top:42px;
+    padding-top:36px;
+  }
+
+  .partner-group{
+    margin-top:24px;
+  }
+
+  .cooperation-group{
+    margin-top:22px;
+  }
+}
+
+@media (max-width:420px){
+  .overview-grid .info-card{flex-basis:89%}
+  .partner-grid .partner-card,
+  .cooperation-grid .partner-card{flex-basis:82%}
+  .feature-grid .feature-card,
+  .data-grid article{flex-basis:86%}
+  .arch-card .arch-col,
+  .arch-card .arch-center{flex-basis:88%}
+  .timeline-item{flex-basis:88%}
+}
