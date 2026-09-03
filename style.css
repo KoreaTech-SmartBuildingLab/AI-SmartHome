@@ -651,3 +651,93 @@ p, li, small, strong, span,
     font-size:17px;
   }
 }
+
+
+/* v6 compact subcontract institution row */
+.subcontract-row{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  margin-top:22px;
+  padding:22px 2px 2px;
+  border-top:1px solid var(--line);
+  min-height:72px;
+}
+
+.subcontract-label{
+  flex:0 0 auto;
+  color:var(--navy);
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:-.035em;
+}
+
+.subcontract-divider{
+  width:1px;
+  height:24px;
+  background:var(--line);
+  flex:0 0 auto;
+}
+
+.subcontract-row img{
+  width:auto;
+  height:42px;
+  max-width:150px;
+  object-fit:contain;
+  flex:0 0 auto;
+}
+
+.subcontract-name{
+  color:var(--navy);
+  font-size:16px;
+  font-weight:800;
+  letter-spacing:-.025em;
+}
+
+@media (max-width:700px){
+  .subcontract-row{
+    gap:12px;
+    margin-top:18px;
+    padding:18px 2px 0;
+    min-height:58px;
+    flex-wrap:nowrap;
+  }
+
+  .subcontract-label{
+    font-size:16px;
+  }
+
+  .subcontract-divider{
+    height:20px;
+  }
+
+  .subcontract-row img{
+    height:32px;
+    max-width:112px;
+  }
+
+  .subcontract-name{
+    font-size:14px;
+    white-space:nowrap;
+  }
+}
+
+@media (max-width:380px){
+  .subcontract-row{
+    gap:9px;
+  }
+
+  .subcontract-label{
+    font-size:15px;
+  }
+
+  .subcontract-row img{
+    height:28px;
+    max-width:96px;
+  }
+
+  .subcontract-name{
+    font-size:13px;
+  }
+}
+/* end v6 compact subcontract institution row */
