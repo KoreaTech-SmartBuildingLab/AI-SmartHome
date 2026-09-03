@@ -51,13 +51,13 @@ if (navSections.length) {
 
 
 // Mobile-only swipe guidance for horizontally scrollable content.
-// The HTML stays common to desktop and mobile; CSS changes the presentation.
+// The architecture diagram is intentionally excluded in v5 so the whole flow
+// stays visible at once on phone screens.
 const mobileCarouselSelectors = [
   '.overview-grid',
   '.research-grid',
   '.cooperation-grid',
   '.feature-grid',
-  '.arch-card',
   '.timeline',
   '.data-grid'
 ];
@@ -94,4 +94,55 @@ if (mobileMedia.addEventListener) {
   mobileMedia.addEventListener('change', setupMobileSwipeHints);
 } else if (mobileMedia.addListener) {
   mobileMedia.addListener(setupMobileSwipeHints);
+}
+
+
+// Mobile quick navigation:
+// highlights the section currently in view and gently brings its tab into view.
+const mobileQuickNav = document.querySelector('.mobile-quick-inner');
+const mobileQuickLinks = mobileQuickNav
+  ? [...mobileQuickNav.querySelectorAll('a[href^="#"]')]
+  : [];
+
+const quickSections = mobileQuickLinks
+  .map(link => document.querySelector(link.getAttribute('href')))
+  .filter(Boolean);
+
+if (mobileQuickLinks.length && quickSections.length) {
+  const setMobileActive = id => {
+    mobileQuickLinks.forEach(link => {
+      const active = link.getAttribute('href') === `#${id}`;
+      link.classList.toggle('active', active);
+
+      if (active && mobileMedia.matches) {
+        link.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'center'
+        });
+      }
+    });
+  };
+
+  const mobileSectionObserver = new IntersectionObserver(entries => {
+    if (!mobileMedia.matches) return;
+
+    const visible = entries
+      .filter(entry => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+    if (visible) setMobileActive(visible.target.id);
+  }, {
+    rootMargin: '-34% 0px -54% 0px',
+    threshold: [0, 0.08, 0.2, 0.4]
+  });
+
+  quickSections.forEach(section => mobileSectionObserver.observe(section));
+
+  mobileQuickLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      const id = link.getAttribute('href').slice(1);
+      setMobileActive(id);
+    });
+  });
 }
