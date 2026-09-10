@@ -1,4 +1,7 @@
-# AI 스마트홈 GitHub Pages v6
+## 웹사이트 주소
+https://koreatech-smartbuildinglab.github.io/AI-SmartHome/
+
+## AI 스마트홈 GitHub Pages v6
 - v5 반응형 버전을 기반으로 참여기관 표시를 보완한 버전임
 
 ## 기관 표시
