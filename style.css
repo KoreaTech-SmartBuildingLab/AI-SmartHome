@@ -741,3 +741,56 @@ p, li, small, strong, span,
   }
 }
 /* end v6 compact subcontract institution row */
+
+/* v7: Online application entry points */
+.nav-apply{background:var(--green2);color:#fff!important;padding:12px 17px;border-radius:999px;white-space:nowrap}
+.nav-apply:hover{background:#08745e;color:#fff!important}
+.nav-menu{gap:clamp(9px,1.1vw,19px);font-size:clamp(12px,.88vw,14px)}
+.nav-menu>a{white-space:nowrap}
+.nav-cta{padding:12px 17px;white-space:nowrap}
+.btn-apply{background:var(--navy);border-color:var(--navy);color:#fff}
+.btn-apply:hover{background:#0a315d}
+.apply-section{background:linear-gradient(135deg,#f3faf7 0%,#eef6fb 100%)}
+.apply-panel{text-align:center;max-width:920px}
+.apply-panel .section-lead{margin:22px auto 28px;max-width:750px}
+.apply-main-button{min-width:250px}
+.apply-panel .fineprint{margin:18px auto 0;max-width:720px}
+@media(max-width:1200px){.nav-menu{gap:9px;font-size:12px}.nav-apply,.nav-cta{padding:10px 12px}}
+@media(max-width:1100px){.nav-menu{display:none;position:absolute;top:78px;left:0;right:0;background:#fff;padding:20px 24px;box-shadow:0 16px 25px rgba(0,0,0,.08);flex-direction:column;align-items:flex-start}.nav-menu.open{display:flex}.menu-toggle{display:block}}
+@media(max-width:700px){
+ .mobile-quick-inner .mobile-apply-link{background:var(--green2);border-color:var(--green2);color:#fff}
+ .hero-actions .btn{width:100%;justify-content:center}
+ .apply-panel .section-lead br{display:none}
+ .apply-main-button{width:100%;min-width:0}
+}
+
+/* v8: Keep navigation visible on tablet and standard desktop widths.
+   Use a compact second navigation row instead of a hamburger (701–1500px). */
+@media (min-width:701px) and (max-width:1500px) {
+  .nav-wrap {
+    height:auto;
+    min-height:78px;
+    padding-top:12px;
+    padding-bottom:10px;
+    flex-wrap:wrap;
+    row-gap:8px;
+  }
+  .nav-menu, .nav-menu.open {
+    display:flex;
+    position:static;
+    flex:0 0 100%;
+    width:100%;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px 12px;
+    padding:0;
+    background:transparent;
+    box-shadow:none;
+    font-size:clamp(11px,1vw,14px);
+  }
+  .nav-menu a {white-space:nowrap;}
+  .nav-menu .nav-apply, .nav-menu .nav-cta {padding:8px 12px;}
+  .menu-toggle {display:none;}
+}
