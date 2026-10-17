@@ -794,3 +794,24 @@ p, li, small, strong, span,
   .nav-menu .nav-apply, .nav-menu .nav-cta {padding:8px 12px;}
   .menu-toggle {display:none;}
 }
+
+
+/* v9: Keep the two main participation actions beside the brand on phones. */
+.mobile-header-actions{display:none}
+@media(max-width:700px){
+  .nav-wrap{gap:8px;justify-content:space-between}
+  .brand{gap:7px;min-width:0;flex:0 1 auto}
+  .brand-mark{flex:0 0 38px}
+  .mobile-header-actions{display:flex;align-items:center;gap:6px;margin-left:auto;flex:0 0 auto}
+  .mobile-header-actions a{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;padding:7px 9px;border:1px solid;border-radius:999px;font-size:11px;font-weight:800;line-height:1.2}
+  .mobile-header-apply{background:var(--green2);border-color:var(--green2)!important;color:#fff}
+  .mobile-header-contact{background:#fff;border-color:#cbd7dc!important;color:var(--navy)}
+  .mobile-quick-inner .mobile-apply-link,.mobile-quick-inner .mobile-contact-link{display:none}
+  section[id]{scroll-margin-top:118px}
+}
+@media(max-width:380px){
+  .mobile-header-actions{gap:4px}
+  .mobile-header-actions a{padding:6px 7px;font-size:10px}
+  .brand-text strong{font-size:14px}
+  .brand-text small{font-size:9px}
+}
